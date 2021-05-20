@@ -1,0 +1,51 @@
+Compilação original
+make  1,24s user 0,18s system 98% cpu 1,432 total
+execuções: 15.00, 14.73, 15.15, 14.08, 11.95
+média aritmética: 14.18
+variância: 3.16
+
+Compilação com -O2
+make -B  3,82s user 0,26s system 99% cpu 4,091 total 
+execuções: 5.96, 5.62, 6.25, 6.44, 6.08
+média aritmética: 6.07
+variância: 0.38
+
+Compilação com -O2 -ftree-vectorize
+execuções: 5.58, 5.33, 7.44, 7.23, 7.14, 
+média: 6.544 
+variância: 3.76
+
+Compilação com -O2 -march=native
+make -B  3,92s user 0,32s system 99% cpu 4,263 total 
+execuções: 6.02, 6.00, 5.49, 7.60, 5.62
+média: 6.146
+variância: 2.65
+
+Compilação com -O3
+make -B  4,88s user 0,28s system 99% cpu 5,195 total
+execuções: 5.31, 5.85, 5.65, 7.34, 6.00
+média: 6.03s
+variância: 2.41
+
+Compilação usando -Ofast
+make -B  4,86s user 0,32s system 99% cpu 5,202 total 
+execuções: 5.36, 5.36, 7.43, 5.49, 6.39
+média: 6.006
+variância: 3.16
+
+
+## Comentários
+é possível observar que, na média, a compilação usando -Ofast foi mais rápida, mas, 
+se levarmos em consideração a variância, devemos dizer que apenas a compilação usando
+-O2 foi melhor. ainda mais se consideramos o tempo de compilação do programa. 
+
+apesar de ter usado flags como -O3 e -Ofast, seria melhor só tê-las aplicado ao 
+entender questões como a precisão de ponto flutuante pra não alterar o comportamento
+do código de alguma maneira, como foi mencionado pelo Giuliano em aula.
+
+como o tempo de compilação aumenta ao usarmos essas flags, não é interessante usá-las
+em outro ponto que não seja após o programa estar pronto e testado. o debug também
+fica mais complexo depois que o código foi otimizado.
+
+a aula sobre as flags foi muito interessante e a documentação passada no EP pra consulta
+também. (:
