@@ -2,7 +2,7 @@
 # Nome: Giovana Vieira de Morais
 # NUSP: 11921908
 
-n=10
+n=200
 delay=100000 # 100ms
 
 while :
@@ -19,7 +19,7 @@ do
 	cmd_output=$(python3 corretude.py $executavel $n 2>&1);
 	echo $cmd_output;
 
-	if [ $cmd_output = "delay works!" ]
+	if [ $cmd_output = "ok" ]
 	then
 		break;
 	fi
