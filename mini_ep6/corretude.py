@@ -5,15 +5,15 @@ from random import shuffle
 from subprocess import Popen, PIPE
 import sys
 
-def run_sleep_sort(number_list):
+def run_sleep_sort(number_list, right_output):
     correct = 0
     incorrect = 0
-    nl = number_list
     for i in range(int(N)):
-        shuffle(nl)
-        str_ = " ".join(nl)
+        shuffle(number_list)
+        str_ = " ".join(number_list)
 
-        p = Popen(f'./{executavel} {str_}', shell=True, stdout=PIPE)
+        command = f'./{executavel} {str_}'
+        p = Popen(command, shell=True, stdout=PIPE)
         stdout, _ = p.communicate()
 
         stdout = stdout.decode('UTF-8').rstrip(" \n").split(" ")
@@ -32,10 +32,8 @@ def run_sleep_sort(number_list):
 
 if __name__ == '__main__':
     number_list = [str(i) for i in range(1, 101)]
-    right_output = number_list
+    right_output = [str(i) for i in range(1, 101)]
     executavel = sys.argv[1]
     N = sys.argv[2]
 
-    p = multiprocessing.Process(target=run_sleep_sort, args=(number_list,))
-    p.start()
-    p.join()
+    run_sleep_sort(number_list, right_output)
